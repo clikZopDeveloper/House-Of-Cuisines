@@ -43,7 +43,7 @@ class AddSaleProductAdapter(
         holder.tvQty.text = "QTY : "+list[position].qty
         holder.tvGST.text = list[position].gst.toString()
         holder.tvDecription.text = list[position].description
-        holder.tvCOMMISION.text = list[position].commision
+       // holder.tvCOMMISION.text = list[position].commision
       //  holder.tvCOMMISION.text = list[position].commision
 
         holder.itemView.setOnClickListener {

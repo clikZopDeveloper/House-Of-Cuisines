@@ -107,12 +107,48 @@
                     android:paddingHorizontal="@dimen/_10dp"
                     android:layout_marginTop="5dp"
                     android:hint="Enter Note"/>
+                <com.google.android.material.textfield.TextInputLayout
+                    style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.ExposedDropdownMenu"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp"
+                    android:hint="Select Expense Type"
+                    app:boxStrokeColor="@color/light_grays">
+
+
+                    <AutoCompleteTextView
+                        android:id="@+id/SelectExpenseType"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content" />
+
+                </com.google.android.material.textfield.TextInputLayout>
+
+                <com.google.android.material.textfield.TextInputLayout
+                    style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.ExposedDropdownMenu"
+                    android:id="@+id/inputVendor"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp"
+                    android:hint="Select Vendor"
+                    android:visibility="gone"
+                    app:boxStrokeColor="@color/light_grays">
+
+
+                    <AutoCompleteTextView
+                        android:id="@+id/SelectVendorLabour"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content" />
+
+                </com.google.android.material.textfield.TextInputLayout>
+
+
                 <RelativeLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="@dimen/_10dp"
                     android:paddingVertical="@dimen/_6dp"
                     android:paddingHorizontal="@dimen/_6dp"
+                    android:visibility="gone"
                     android:background="@color/light_primar_color"
                     android:orientation="horizontal">
                     <TextView
@@ -141,13 +177,13 @@
                         android:textSize="16sp" />
                 </RelativeLayout>
                 <com.google.android.material.textfield.TextInputLayout
+                   android:id="@+id/inputCategory"
                     style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.ExposedDropdownMenu"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="10dp"
                     android:hint="Select Category"
                     app:boxStrokeColor="@color/light_grays">
-
 
                     <AutoCompleteTextView
                         android:id="@+id/SelectCategory"
@@ -157,6 +193,7 @@
                 </com.google.android.material.textfield.TextInputLayout>
 
                 <com.google.android.material.textfield.TextInputLayout
+                    android:id="@+id/inputSubCategory"
                     style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.ExposedDropdownMenu"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
@@ -217,46 +254,12 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="10dp"
-                    android:hint="Select Sale"
+                    android:hint="Select Event"
                     app:boxStrokeColor="@color/light_grays">
 
 
                     <AutoCompleteTextView
                         android:id="@+id/SelectSale"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content" />
-
-                </com.google.android.material.textfield.TextInputLayout>
-
-                <com.google.android.material.textfield.TextInputLayout
-                    style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.ExposedDropdownMenu"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="10dp"
-                    android:hint="Select Expense Type"
-                    app:boxStrokeColor="@color/light_grays">
-
-
-                    <AutoCompleteTextView
-                        android:id="@+id/SelectExpenseType"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content" />
-
-                </com.google.android.material.textfield.TextInputLayout>
-
-                <com.google.android.material.textfield.TextInputLayout
-                    style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.ExposedDropdownMenu"
-                    android:id="@+id/inputVendor"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="10dp"
-                    android:hint="Select Vendor"
-                    android:visibility="gone"
-                    app:boxStrokeColor="@color/light_grays">
-
-
-                    <AutoCompleteTextView
-                        android:id="@+id/SelectVendorLabour"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content" />
 

@@ -28,7 +28,18 @@
                 android:layout_height="wrap_content"
                 android:layout_marginHorizontal="@dimen/_10dp"
                 android:orientation="vertical">
-
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/_5dip"
+                    android:background="@color/light_primar_color"
+                    android:fontFamily="@font/roboto_regular"
+                    android:gravity="start"
+                    android:paddingHorizontal="@dimen/_6dp"
+                    android:paddingVertical="@dimen/_10dp"
+                    android:text="Add Event"
+                    android:textColor="@color/black"
+                    android:textSize="16sp" />
                 <TextView
                     android:id="@+id/tvtitle"
                     android:layout_width="wrap_content"
@@ -37,8 +48,7 @@
                     android:text="Upload Picture"
                     android:textColor="@color/black"
                     android:textSize="14sp"
-                    android:textStyle="bold"
-                    android:visibility="gone" />
+                    android:textStyle="bold" />
 
                 <RelativeLayout
                     android:id="@+id/btnUplaodImages"
@@ -48,8 +58,7 @@
                     android:layout_marginTop="5dp"
                     android:background="@drawable/border"
                     android:orientation="vertical"
-                    android:padding="10dp"
-                    android:visibility="gone">
+                    android:padding="10dp">
 
                     <ImageView
                         android:id="@+id/btnAadharFront"
@@ -62,18 +71,7 @@
 
                 </RelativeLayout>
 
-                <TextView
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="@dimen/_5dip"
-                    android:background="@color/light_primar_color"
-                    android:fontFamily="@font/roboto_regular"
-                    android:gravity="start"
-                    android:paddingHorizontal="@dimen/_6dp"
-                    android:paddingVertical="@dimen/_10dp"
-                    android:text="Add Sale"
-                    android:textColor="@color/black"
-                    android:textSize="16sp" />
+
 
                 <com.google.android.material.textfield.TextInputLayout
                     style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.ExposedDropdownMenu"
@@ -133,6 +131,20 @@
                        android:paddingHorizontal="@dimen/_10dp"
                        android:layout_marginTop="@dimen/_10dp"
                        android:hint="Select Billed/Not Billed"/>-->
+
+                <EditText
+                    android:id="@+id/editEventDate"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="5dp"
+                    android:layout_weight="1"
+                    android:background="@drawable/edittest_shape"
+                    android:drawableRight="@drawable/ic_baseline_calendar_month_24"
+                    android:drawableTint="@color/black"
+                    android:elevation="@dimen/_4dip"
+                    android:hint="Select Event Date"
+                    android:paddingHorizontal="@dimen/_10dp"
+                    android:paddingVertical="12dp" />
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
@@ -167,6 +179,19 @@
                         android:paddingHorizontal="@dimen/_10dp"
                         android:paddingVertical="12dp" />
                 </LinearLayout>
+                <com.google.android.material.textfield.TextInputLayout
+                    style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.ExposedDropdownMenu"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp"
+                    android:hint="Select Event Shift">
+
+                    <AutoCompleteTextView
+                        android:id="@+id/SelectEventShift"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content" />
+
+                </com.google.android.material.textfield.TextInputLayout>
 
                 <com.google.android.material.textfield.TextInputLayout
                     style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.ExposedDropdownMenu"
@@ -182,6 +207,28 @@
 
                 </com.google.android.material.textfield.TextInputLayout>
 
+                <EditText
+                    android:id="@+id/editVenue"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="5dp"
+                    android:background="@drawable/edittest_shape"
+                    android:elevation="@dimen/_4dip"
+                    android:hint="Enter Venue"
+                    android:paddingHorizontal="@dimen/_10dp"
+                    android:paddingVertical="12dp" />
+                <EditText
+                    android:id="@+id/editOccasions"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="5dp"
+                    android:background="@drawable/edittest_shape"
+                    android:elevation="@dimen/_4dip"
+                    android:hint="Enter Occasions"
+                    android:paddingHorizontal="@dimen/_10dp"
+                    android:paddingVertical="12dp" />
+
+
                 <com.google.android.material.textfield.TextInputLayout
                     style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.ExposedDropdownMenu"
                     android:layout_width="match_parent"
@@ -195,6 +242,42 @@
                         android:layout_height="wrap_content" />
 
                 </com.google.android.material.textfield.TextInputLayout>
+                <com.google.android.material.textfield.TextInputLayout
+                    style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.ExposedDropdownMenu"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp"
+                    android:hint="Select GST"
+                    app:boxStrokeColor="@color/light_grays">
+
+
+                    <AutoCompleteTextView
+                        android:id="@+id/SelectGST"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content" />
+
+                </com.google.android.material.textfield.TextInputLayout>
+                <EditText
+                    android:id="@+id/editIllusions"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="5dp"
+                    android:background="@drawable/edittest_shape"
+                    android:elevation="@dimen/_4dip"
+                    android:hint="Enter Illusions"
+                    android:paddingHorizontal="@dimen/_10dp"
+                    android:paddingVertical="12dp" />
+
+                <EditText
+                    android:id="@+id/editExtrabyGuest"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="5dp"
+                    android:background="@drawable/edittest_shape"
+                    android:elevation="@dimen/_4dip"
+                    android:hint="Enter Extra by Guest"
+                    android:paddingHorizontal="@dimen/_10dp"
+                    android:paddingVertical="12dp" />
 
                 <RelativeLayout
                     android:layout_width="match_parent"
@@ -298,27 +381,13 @@
                     android:paddingHorizontal="@dimen/_10dp"
                     android:paddingVertical="12dp" />
 
-                <com.google.android.material.textfield.TextInputLayout
-                    style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.ExposedDropdownMenu"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="10dp"
-                    android:hint="Select GST"
-                    app:boxStrokeColor="@color/light_grays">
-
-
-                    <AutoCompleteTextView
-                        android:id="@+id/SelectGST"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content" />
-
-                </com.google.android.material.textfield.TextInputLayout>
 
                 <com.google.android.material.textfield.TextInputLayout
                     style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.ExposedDropdownMenu"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="10dp"
+                    android:visibility="gone"
                     android:hint="Select GST Type"
                     app:boxStrokeColor="@color/light_grays">
 
@@ -329,19 +398,6 @@
                         android:layout_height="wrap_content" />
 
                 </com.google.android.material.textfield.TextInputLayout>
-
-
-                <EditText
-                    android:id="@+id/editCommisionPerQty"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="5dp"
-                    android:background="@drawable/edittest_shape"
-                    android:elevation="@dimen/_4dip"
-                    android:hint="Enter Commision Per Qty"
-                    android:inputType="number"
-                    android:paddingHorizontal="@dimen/_10dp"
-                    android:paddingVertical="12dp" />
 
                 <androidx.recyclerview.widget.RecyclerView
                     android:id="@+id/rcAllProduct"

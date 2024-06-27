@@ -17,15 +17,15 @@ import com.example.house_of_cuisines.ApiHelper.ApiController
 import com.example.house_of_cuisines.ApiHelper.ApiResponseListner
 import com.example.house_of_cuisines.Model.*
 import com.example.house_of_cuisines.Utills.*
-import com.example.house_of_cuisines.databinding.FragmentSalesBinding
+import com.example.house_of_cuisines.databinding.FragmentEventBinding
 import com.google.gson.Gson
 import com.google.gson.JsonElement
 import com.stpl.antimatter.Utils.ApiContants
 
-class SalesFragment : Fragment(), ApiResponseListner {
+class EventFragment : Fragment(), ApiResponseListner {
 
     private lateinit var apiClient: ApiController
-    private var _binding: FragmentSalesBinding? = null
+    private var _binding: FragmentEventBinding? = null
 
     private val binding get() = _binding!!
 
@@ -34,7 +34,7 @@ class SalesFragment : Fragment(), ApiResponseListner {
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        _binding = com.example.house_of_cuisines.databinding.FragmentSalesBinding.inflate(
+        _binding = com.example.house_of_cuisines.databinding.FragmentEventBinding.inflate(
             inflater,
             container,
             false
@@ -46,7 +46,7 @@ class SalesFragment : Fragment(), ApiResponseListner {
         titleText?.setTitle("All Sales")
 
         binding.fbAddArchitect.setOnClickListener {
-            requireActivity().startActivity(Intent(requireActivity(), AddSalesActivity::class.java).putExtra("way","Add Sales"))
+            requireActivity().startActivity(Intent(requireActivity(), AddEventActivity::class.java).putExtra("way","Add Sales"))
         }
 
         apiClient = ApiController(activity, this)
@@ -120,7 +120,6 @@ class SalesFragment : Fragment(), ApiResponseListner {
         binding.SelectCustomer.setAdapter(adapte1)
         binding.SelectCustomer.setOnItemClickListener(AdapterView.OnItemClickListener { parent, view, position, id ->
             Log.d("xcvxcvc", Gson().toJson(data.get(position).name))
-
             for (i in data.indices) {
                 if (data.get(i).name.equals(parent.getItemAtPosition(position))) {
                     Log.d("StateID", data.get(i).id.toString())
@@ -131,7 +130,6 @@ class SalesFragment : Fragment(), ApiResponseListner {
             }
         })
         adapte1.notifyDataSetChanged()
-
     }
 
     fun handleSalesLis(data: List<GetSalesBean.Data>) {

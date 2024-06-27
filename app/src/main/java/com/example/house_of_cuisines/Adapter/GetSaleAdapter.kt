@@ -10,7 +10,7 @@ import android.widget.LinearLayout
 import android.widget.TextView
 import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.RecyclerView
-import com.example.house_of_cuisines.Activity.AddSalesActivity
+import com.example.house_of_cuisines.Activity.AddEventActivity
 import com.example.house_of_cuisines.Model.GetSalesBean
 import com.example.house_of_cuisines.R
 import com.example.house_of_cuisines.Utills.RvStatusClickListner
@@ -73,7 +73,7 @@ class GetSaleAdapter(
             context.startActivity(
                 Intent(
                     context,
-                    AddSalesActivity::class.java
+                    AddEventActivity::class.java
                 ).putExtra("saleResponse", list[position])
                     .putExtra("way","EditSale")
             )

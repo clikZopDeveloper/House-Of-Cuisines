@@ -47,7 +47,7 @@
             android:launchMode="singleTop" />
 
         <activity
-            android:name=".Activity.AddSalesActivity"
+            android:name=".Activity.AddEventActivity"
             android:exported="false"
             android:launchMode="singleTop" />
         <activity

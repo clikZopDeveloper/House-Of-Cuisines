@@ -9,7 +9,6 @@ data class AddProductBean(
     val qty: String,
     val price: String,
     val gst: String,
-    val commision: String,
     val gst_type: String
 
 

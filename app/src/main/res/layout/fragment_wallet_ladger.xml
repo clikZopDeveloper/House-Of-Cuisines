@@ -96,6 +96,7 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:text=""
+                            android:visibility="gone"
                             android:paddingVertical="2dp"
                             android:paddingHorizontal="@dimen/_4dip"
                             android:layout_marginStart="@dimen/_10dp"
@@ -110,6 +111,7 @@
                         android:layout_height="wrap_content"
                         android:layout_marginTop="@dimen/_5dip"
                         android:padding="@dimen/_4dip"
+                        android:visibility="gone"
                         android:layout_marginHorizontal="@dimen/_5dip"
                         android:orientation="horizontal">
                         <TextView
@@ -136,6 +138,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:padding="@dimen/_2dip"
+                        android:visibility="gone"
                         android:layout_marginTop="@dimen/_5dip"
                         android:layout_marginHorizontal="@dimen/_5dip"
                         android:orientation="horizontal">
@@ -165,6 +168,7 @@
                         android:layout_height="wrap_content"
                         android:layout_marginTop="@dimen/_5dip"
                         android:padding="@dimen/_2dip"
+                        android:visibility="gone"
                         android:layout_marginHorizontal="@dimen/_5dip"
                         android:orientation="horizontal">
 
@@ -191,12 +195,11 @@
 
                     </LinearLayout>
 
-
-
                     <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:padding="@dimen/_2dip"
+                        android:visibility="gone"
                         android:layout_marginTop="@dimen/_5dip"
                         android:layout_marginHorizontal="@dimen/_5dip"
                         android:orientation="horizontal">

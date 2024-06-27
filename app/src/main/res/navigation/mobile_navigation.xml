@@ -24,9 +24,9 @@
 
     <fragment
         android:id="@+id/navigation_sales"
-        android:name="com.example.house_of_cuisines.Fragment.SalesFragment"
+        android:name="com.example.house_of_cuisines.Fragment.EventFragment"
         android:label="@string/menu_sales"
-        tools:layout="@layout/fragment_sales" />
+        tools:layout="@layout/fragment_event" />
 
     <fragment
         android:id="@+id/navigation_setting"

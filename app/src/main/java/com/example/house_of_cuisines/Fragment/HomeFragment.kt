@@ -66,13 +66,13 @@ class HomeFragment : Fragment(), ApiResponseListner {
         //    ApiContants.movabalebutton(binding.fbAddArchitect,requireActivity())
 
         apiWalletLadger()
-        apiDashboard()
+
         binding.apply {
             cardAddSale.setOnClickListener {
                 requireActivity().startActivity(
                     Intent(
                         requireActivity(),
-                        AddSalesActivity::class.java
+                        AddEventActivity::class.java
                     ).putExtra("way", "Add Sale")
                 )
             }
@@ -244,6 +244,7 @@ class HomeFragment : Fragment(), ApiResponseListner {
     override fun onResume() {
         super.onResume()
         //   apiAllGet()
+        apiDashboard()
     }
 
 }

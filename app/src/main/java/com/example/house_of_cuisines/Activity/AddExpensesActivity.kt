@@ -58,7 +58,7 @@ class AddExpensesActivity : AppCompatActivity(), ApiResponseListner,
     var file2: File? = null
     var myReceiver: ConnectivityListener? = null
     var activity: Activity = this
-    val expenseType = listOf("Vendor", "Labour", "TA/DA")
+    val expenseType = listOf("Vendor", "Labour", "TA/DA","Miscellaneous")
     val builledType = listOf("Billed", "Not Billed")
     val paymentModeType = listOf("Bank Transfer", "Cheque", "Cash")
     val activeType = listOf("Yes", "No")
@@ -84,8 +84,7 @@ class AddExpensesActivity : AppCompatActivity(), ApiResponseListner,
         val wayType = intent.getStringExtra("way")
         if (wayType.equals("EditExpense")) {
             binding.igToolbar.tvTitle.text = "Edit Expenses"
-            val expesneRsposne =
-                intent.getSerializableExtra("expenseResponse") as GetExpensesBean.Data
+            val expesneRsposne =intent.getSerializableExtra("expenseResponse") as GetExpensesBean.Data
             binding.apply {
                 Glide.with(this@AddExpensesActivity).load(ApiContants.BaseUrl + expesneRsposne.file)
                     .into(btnAadharFront)
@@ -120,6 +119,7 @@ class AddExpensesActivity : AppCompatActivity(), ApiResponseListner,
         setExpenseType(expenseType)
         setBuilled(builledType)
         setPaymentMode(paymentModeType)
+
         binding.apply {
             btnUplaodImages.setOnClickListener {
                 openCameraDialog(SELECT_PICTURES1, CAMERA_PERMISSION_CODE1)
@@ -181,7 +181,6 @@ class AddExpensesActivity : AppCompatActivity(), ApiResponseListner,
         apiClient.getApiPostCall(ApiContants.getExpenseCategory, params)
         apiClient.getApiPostCall(ApiContants.getCustomer, params)
     }
-
 
     fun apiSale(custID: String) {
         SalesApp.isAddAccessToken = true
@@ -343,21 +342,26 @@ class AddExpensesActivity : AppCompatActivity(), ApiResponseListner,
             setExpenseType(data)
             if (data.get(position).equals("Vendor")) {
                 binding.inputVendor.visibility = View.VISIBLE
+                binding.inputCategory.visibility = View.GONE
+                binding.inputSubCategory.visibility = View.GONE
                 binding.inputVendor.setHint("Select Vendor")
                 //   binding.inputLabour.visibility=View.GONE
             } else if (data.get(position).equals("Labour")) {
                 binding.inputVendor.setHint("Select Labour")
                 binding.inputVendor.visibility = View.VISIBLE
+                binding.inputCategory.visibility = View.GONE
+                binding.inputSubCategory.visibility = View.GONE
                 //    binding.inputLabour.visibility=View.VISIBLE
             } else {
                 binding.inputVendor.visibility = View.GONE
+                binding.inputCategory.visibility = View.VISIBLE
+                binding.inputSubCategory.visibility = View.VISIBLE
                 //  binding.inputLabour.visibility=View.GONE
             }
             apiVendorLabour()
             /* for (i in data.indices) {
                  if (data.get(i).invoice.equals(parent.getItemAtPosition(position))) {
                      Log.d("StateID", data.get(i).id.toString())
-
 
                  }
              }*/
