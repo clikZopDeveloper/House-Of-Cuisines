@@ -16,6 +16,7 @@ import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.house_of_cuisines.Activity.DashboardActivity
+import com.example.house_of_cuisines.Adapter.ExpenseAdapter
 import com.example.house_of_cuisines.Adapter.WalletLadgerAdapter
 import com.example.house_of_cuisines.ApiHelper.ApiController
 import com.example.house_of_cuisines.ApiHelper.ApiResponseListner
@@ -146,6 +147,7 @@ class WalletLadgerFragment : Fragment(), ApiResponseListner {
                     binding.tvDRAMT.text=ApiContants.currency+walletLedgerBean.data.debitAmount.debitAmount
 
                         handleAllTask(walletLedgerBean.data.walletHistory)
+                    handleAllExpense(walletLedgerBean.data.expenses)
                 } else {
                     Toast.makeText(activity, walletLedgerBean.msg, Toast.LENGTH_SHORT).show()
                 }
@@ -185,6 +187,19 @@ class WalletLadgerFragment : Fragment(), ApiResponseListner {
             }
         })
         binding.rcTask.adapter = mAllAdapter
+        mAllAdapter.notifyDataSetChanged()
+        // rvMyAcFiled.isNestedScrollingEnabled = false
+    }
+    fun handleAllExpense(data: List<WalletLedgerBean.Data.Expense>) {
+        binding.rcExpense.layoutManager =
+            LinearLayoutManager(requireContext())
+        val mAllAdapter = ExpenseAdapter(requireActivity(), data, object :
+            RvStatusClickListner {
+            override fun clickPos(status: String, pos: Int) {
+             //   dialogUpdateTask(pos)
+            }
+        })
+        binding.rcExpense.adapter = mAllAdapter
         mAllAdapter.notifyDataSetChanged()
         // rvMyAcFiled.isNestedScrollingEnabled = false
     }

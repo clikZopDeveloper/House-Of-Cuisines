@@ -89,8 +89,7 @@ class AddExpensesActivity : AppCompatActivity(), ApiResponseListner,
                 Glide.with(this@AddExpensesActivity).load(ApiContants.BaseUrl + expesneRsposne.file)
                     .into(btnAadharFront)
                 id=expesneRsposne.id.toString()
-
-                customerID=expesneRsposne.id.toString()
+                customerID=expesneRsposne.ids.toString()
                 vendorID=expesneRsposne.vendorId.toString()
                 invoiceID=expesneRsposne.invoiceId.toString()
 
@@ -104,7 +103,7 @@ class AddExpensesActivity : AppCompatActivity(), ApiResponseListner,
                     SelectCustomer.setText(expesneRsposne.customerName.toString())
              //    SelectSale.setText(expesneRsposne.sa.toString())
                 SelectExpenseType.setText(expesneRsposne.expenseType.toString())
-                SelectVendorLabour.setText(expesneRsposne.vendorName.toString())
+                SelectVendorLabour.setText(expesneRsposne.vendorName?.toString())
                 SelectPaymentMode.setText(expesneRsposne.paymentMode.toString())
                 editRefNumber.setText(expesneRsposne.refNo.toString())
 
