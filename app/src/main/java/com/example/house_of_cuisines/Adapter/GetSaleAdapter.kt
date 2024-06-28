@@ -70,11 +70,14 @@ class GetSaleAdapter(
              rvClickListner.clickPos(list[position].customerCopy,list[position].id)
         }
         holder.ivEdit.setOnClickListener {
+
             context.startActivity(
                 Intent(
                     context,
                     AddEventActivity::class.java
-                ).putExtra("saleResponse", list[position])
+                )
+                    //.putExtra("saleResponse", list[position])
+                    .putExtra("id", list[position].id.toString())
                     .putExtra("way","EditSale")
             )
         }

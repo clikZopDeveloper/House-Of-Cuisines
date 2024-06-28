@@ -209,7 +209,7 @@ class HomeFragment : Fragment(), ApiResponseListner {
         menuList.add(
             MenuModelBean(
                 4,
-                "Total Sale",
+                "Total Event",
                 data.totalSale.totalSale.toString(),
                 R.drawable.ic_dashbord
             )

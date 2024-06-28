@@ -40,6 +40,8 @@ data class DashboardBean(
             val expenseSubcategory: String, // Cab
             @SerializedName("expense_type")
             val expenseType: String, // Labour
+                @SerializedName("customer")
+            val customer: String, // Labour
             @SerializedName("expenses_for")
             val expensesFor: Any, // null
             @SerializedName("file")

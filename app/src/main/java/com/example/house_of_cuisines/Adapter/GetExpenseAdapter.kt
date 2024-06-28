@@ -53,11 +53,29 @@ class GetExpenseAdapter(
         holder.tvNote.text = list[position].note
         holder.tvAmount.text = ApiContants.currency + list[position].amount
         holder.ivEdit.setOnClickListener {
+
             context.startActivity(
                 Intent(
                     context,
                     AddExpensesActivity::class.java
-                ).putExtra("expenseResponse", list[position])
+                )
+                    .putExtra("file", list[position].file)
+                    .putExtra("id", list[position].id)
+                    .putExtra("ids", list[position].ids)
+                    .putExtra("vendorId", list[position].vendorId)
+                    .putExtra("invoiceId", list[position].invoiceId)
+                    .putExtra("build", list[position].build)
+                    .putExtra("name", list[position].name)
+                    .putExtra("note", list[position].note)
+                    .putExtra("expenseCategory", list[position].expenseCategory)
+                    .putExtra("expenseSubcategory", list[position].expenseSubcategory)
+                    .putExtra("expenseDate", list[position].expenseDate)
+                    .putExtra("amount", list[position].amount.toString())
+                    .putExtra("customerName", list[position].customerName.toString())
+                    .putExtra("expenseType", list[position].expenseType.toString())
+                    .putExtra("vendorName", list[position].vendorName?.toString())
+                    .putExtra("refNo", list[position].refNo?.toString())
+                    .putExtra("paymentMode", list[position].paymentMode?.toString())
                     .putExtra("way","EditExpense")
             )
         }
@@ -73,7 +91,14 @@ class GetExpenseAdapter(
     override fun getItemCount(): Int {
         return list.size
     }
-
+   /*  context.startActivity(
+                Intent(
+                    context,
+                    AddExpensesActivity::class.java
+                )
+                    .putExtra("expenseResponse", list[position])
+                    .putExtra("way","EditExpense")
+            )*/
     inner class MyViewHolder(itemview: View) : RecyclerView.ViewHolder(itemview) {
         val tvDate: TextView = itemview.findViewById(R.id.tvDate)
         val tvName: TextView = itemview.findViewById(R.id.tvName)

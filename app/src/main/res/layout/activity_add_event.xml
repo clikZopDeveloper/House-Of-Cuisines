@@ -38,6 +38,7 @@
                     android:paddingHorizontal="@dimen/_6dp"
                     android:paddingVertical="@dimen/_10dp"
                     android:text="Add Event"
+                    android:visibility="gone"
                     android:textColor="@color/black"
                     android:textSize="16sp" />
                 <TextView
@@ -45,6 +46,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:padding="5dp"
+                    android:layout_marginTop="@dimen/_5dip"
                     android:text="Upload Picture"
                     android:textColor="@color/black"
                     android:textSize="14sp"
@@ -234,7 +236,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="10dp"
-                    android:hint="Select GSTType">
+                    android:hint="Select GST Type">
 
                     <AutoCompleteTextView
                         android:id="@+id/SelectGSTType"
@@ -264,7 +266,7 @@
                     android:layout_marginTop="5dp"
                     android:background="@drawable/edittest_shape"
                     android:elevation="@dimen/_4dip"
-                    android:hint="Enter Illusions"
+                    android:hint="Enter Inclusions"
                     android:paddingHorizontal="@dimen/_10dp"
                     android:paddingVertical="12dp" />
 
@@ -275,7 +277,7 @@
                     android:layout_marginTop="5dp"
                     android:background="@drawable/edittest_shape"
                     android:elevation="@dimen/_4dip"
-                    android:hint="Enter Extra by Guest"
+                    android:hint="Enter Extras: By Guest"
                     android:paddingHorizontal="@dimen/_10dp"
                     android:paddingVertical="12dp" />
 

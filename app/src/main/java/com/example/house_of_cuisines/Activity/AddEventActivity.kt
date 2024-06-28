@@ -32,6 +32,9 @@ import com.google.android.gms.common.api.GoogleApiClient
 import com.google.gson.Gson
 import com.google.gson.JsonElement
 import com.stpl.antimatter.Utils.ApiContants
+import okhttp3.MediaType.Companion.toMediaTypeOrNull
+import okhttp3.MultipartBody
+import okhttp3.RequestBody
 import java.io.File
 import java.util.*
 
@@ -44,6 +47,7 @@ class AddEventActivity : AppCompatActivity(), ApiResponseListner,
     private lateinit var binding: ActivityAddEventBinding
     private lateinit var apiClient: ApiController
     val list: MutableList<AddProductBean> = ArrayList()
+    val imgList: MutableList<File> = ArrayList()
     val PERMISSION_CODE = 12345
     val CAMERA_PERMISSION_CODE1 = 123
     var SELECT_PICTURES1 = 1
@@ -81,30 +85,10 @@ class AddEventActivity : AppCompatActivity(), ApiResponseListner,
         val wayType = intent.getStringExtra("way")
         if (wayType.equals("EditSale")) {
             binding.igToolbar.tvTitle.text = "Edit Event"
-            val saleRsposne = intent.getSerializableExtra("saleResponse") as GetSalesBean.Data
-
-            binding.apply {
-
-                id = saleRsposne.id.toString()
-                companyID = saleRsposne.companyId.toString()
-                customerID = saleRsposne.customerId.toString()
-
-                SelectBilled.setText(saleRsposne.isBilled)
-                SelectCompany.setText(saleRsposne.companyId.toString())
-                SelectCustomer.setText(saleRsposne.customer)
-                editSalesDate.setText(saleRsposne.invoiceDate)
-                editDueDate.setText(saleRsposne.dueDate)
-                //    SelectTCS.setText(saleRsposne.tcs)
-                SelectGSTType.setText(saleRsposne.gstType)
-                //  SelectCategory.setText(saleRsposne.)
-                //  SelectSubCategory.setText(saleRsposne.)
-                //   editDescription.setText(saleRsposne.)
-                //      editQty.setText(saleRsposne.qty)
-                editPrice.setText(saleRsposne.amt)
-                //     SelectGST.setText(saleRsposne.amt)
-                //    SelectItemGSTType.setText(saleRsposne.amt)
-                //   editCommisionPerQty.setText(saleRsposne.amt)
-            }
+            id = intent.getStringExtra("id").toString()
+            //      val saleRsposne = intent.getSerializableExtra("saleResponse") as GetSalesBean.Data
+            //     Log.d("asdasd", Gson().toJson(saleRsposne))
+            apiEventList(id)
 
         } else {
             binding.igToolbar.tvTitle.text = "Add Event"
@@ -114,7 +98,7 @@ class AddEventActivity : AppCompatActivity(), ApiResponseListner,
         allGetApi()
         setBuilled(builledType)
         setGSTType(GSTType)
-    //    setItemGSTType(ItemGSTType)
+        //    setItemGSTType(ItemGSTType)
         setTCS(TCS)
         setEventShift(EventShift)
 
@@ -126,7 +110,8 @@ class AddEventActivity : AppCompatActivity(), ApiResponseListner,
 
             btnAddCategory.setOnClickListener {
                 if (binding.SelectCategory.text.toString().isNullOrEmpty()) {
-                    Toast.makeText(this@AddEventActivity, "Select Category", Toast.LENGTH_SHORT).show()
+                    Toast.makeText(this@AddEventActivity, "Select Category", Toast.LENGTH_SHORT)
+                        .show()
                 } else {
                     val multiple = AddProductBean(
                         binding.SelectCategory.text.toString(),
@@ -141,6 +126,12 @@ class AddEventActivity : AppCompatActivity(), ApiResponseListner,
 
                     Log.d("werwer", Gson().toJson(list))
                     handleProductList(list)
+
+                    binding.SelectCategory.text.clear()
+                    binding.SelectSubCategory.text.clear()
+                    binding.editDescription.text.clear()
+                    binding.editQty.text.clear()
+                    binding.editPrice.text.clear()
                 }
             }
 
@@ -176,27 +167,35 @@ class AddEventActivity : AppCompatActivity(), ApiResponseListner,
     fun apiAddSale() {
         SalesApp.isAddAccessToken = true
         val params = Utility.getParmMap()
-       // params["sales_id"] = companyID
-        params["company_id"] = companyID
-        params["customer_id"] = customerID
-        params["prod_list"] = Gson().toJson(list)
-        params["due_date"] = binding.editDueDate.text.toString()
-        params["event_date"] = binding.editEventDate.text.toString()
-        params["service_tax"] = binding.SelectTCS.text.toString()
-        params["invoice_date"] = binding.editSalesDate.text.toString()
-        params["gst_type_mst"] = binding.SelectGSTType.text.toString()
-        params["is_billed"] = binding.SelectBilled.text.toString()
-        params["event_shift"] = binding.SelectEventShift.text.toString()
+        val builder = MultipartBody.Builder()
 
-        params["gst"] = binding.SelectGST.text.toString()
-        params["occasions"] = binding.SelectEventShift.text.toString()
-        params["venue"] = binding.editVenue.text.toString()
-        params["illusions"] = binding.editIllusions.text.toString()
-        params["extra_by_guest"] = binding.editExtrabyGuest.text.toString()
+        builder.setType(MultipartBody.FORM)
+        builder.addFormDataPart("id",id)
+        builder.addFormDataPart("company_id",companyID)
+        builder.addFormDataPart("customer_id",customerID)
+        builder.addFormDataPart("prod_list",Gson().toJson(list))
+        builder.addFormDataPart("due_date",binding.editDueDate.text.toString())
+        builder.addFormDataPart("event_date",binding.editEventDate.text.toString())
+        builder.addFormDataPart("service_tax",binding.SelectTCS.text.toString())
+        builder.addFormDataPart("invoice_date",binding.editSalesDate.text.toString())
+        builder.addFormDataPart("gst_type_mst",binding.SelectGSTType.text.toString())
+        builder.addFormDataPart("is_billed",binding.SelectBilled.text.toString())
+        builder.addFormDataPart("event_shift",binding.SelectEventShift.text.toString())
+        builder.addFormDataPart("gst",binding.SelectGST.text.toString())
+        builder.addFormDataPart("occasions",binding.SelectEventShift.text.toString())
+        builder.addFormDataPart("venue",binding.editVenue.text.toString())
+        builder.addFormDataPart("illusions",binding.editIllusions.text.toString())
+        builder.addFormDataPart("extra_by_guest",binding.editExtrabyGuest.text.toString())
+
+        for (i in 0 until imgList.size) {
+            builder.addFormDataPart("files[]", imgList.get(i).name,
+                RequestBody.create("multipart/form-data".toMediaTypeOrNull(), imgList.get(i)))
+        }
 
         apiClient.progressView.showLoader()
-        Log.d("sdfgsdfhg", Gson().toJson(params))
-        apiClient.getApiPostCall(ApiContants.getAddSale, params)
+      //  Log.d("sdfgsdfhg", Gson().toJson(params))
+
+        apiClient.makeCallMultipart(ApiContants.getAddSale, builder.build())
     }
 
     fun apiSubCategory() {
@@ -205,6 +204,14 @@ class AddEventActivity : AppCompatActivity(), ApiResponseListner,
         params["category_id"] = catID
         apiClient.progressView.showLoader()
         apiClient.getApiPostCall(ApiContants.getSubCategory, params)
+    }
+
+    fun apiEventList(ids: String) {
+        SalesApp.isAddAccessToken = true
+        val params = Utility.getParmMap()
+        params["event_id"] = ids
+        apiClient.progressView.showLoader()
+        apiClient.getApiPostCall(ApiContants.getEventDetail, params)
     }
 
     override fun success(tag: String?, jsonElement: JsonElement) {
@@ -243,6 +250,58 @@ class AddEventActivity : AppCompatActivity(), ApiResponseListner,
                 )
                 if (subCatBean.error == false) {
                     setSubCategory(subCatBean.data)
+                }
+            }
+            if (tag == ApiContants.getEventDetail) {
+                val eventDetail = apiClient.getConvertIntoModel<EventDetail>(
+                    jsonElement.toString(),
+                    EventDetail::class.java
+                )
+                if (eventDetail.error == false) {
+                    binding.apply {
+
+                        for (orderList in eventDetail.data.orderDet) {
+                            val multiple = AddProductBean(
+                                orderList.category,
+                                orderList.subCategory,
+                                orderList.description,
+                                orderList.qty.toString(),
+                                orderList.price,
+                                orderList.gst,
+                                ""
+                            )
+                            list.add(multiple)
+                        }
+                        Log.d("yuiyuiyu", Gson().toJson(list))
+                        handleProductList(list)
+
+                        val saleRsposne = eventDetail.data.orderMst
+
+
+                        id = saleRsposne.id.toString()
+                        companyID = saleRsposne.companyId.toString()
+                        customerID = saleRsposne.customerId.toString()
+
+                        SelectBilled.setText(saleRsposne.isBilled)
+                        SelectCompany.setText(saleRsposne.companyId.toString())
+                        SelectCustomer.setText(saleRsposne.customer)
+                        editEventDate.setText(saleRsposne.eventDate)
+                        editSalesDate.setText(saleRsposne.invoiceDate)
+                        editDueDate.setText(saleRsposne.dueDate)
+                        SelectEventShift.setText(saleRsposne.eventShift)
+                        SelectTCS.setText(saleRsposne.serviceTax)
+                        editVenue.setText(saleRsposne.venue)
+                        editOccasions.setText(saleRsposne.occasions)
+                        SelectGSTType.setText(saleRsposne.gstType)
+                        SelectGST.setText(saleRsposne.gst)
+                        editIllusions.setText(saleRsposne.illusions)
+                        editExtrabyGuest.setText(saleRsposne.extraByGuest)
+                        // SelectCategory.setText(saleRsposne.)
+                        //  SelectSubCategory.setText(saleRsposne.)
+                        //      editDescription.setText(saleRsposne.d)
+                        //      editQty.setText(saleRsposne.qty)
+                        //   editPrice.setText(saleRsposne.)
+                    }
                 }
             }
 
@@ -683,6 +742,7 @@ class AddEventActivity : AppCompatActivity(), ApiResponseListner,
                         applicationContext, imageUri
                     )
                     file2 = File(picturePath)
+                    imgList.add(file2!!)
                     //val custImg = CustProdImgBean(file2)
 
                     //   Log.d("MultiPicturePath", picturePath)
@@ -698,8 +758,7 @@ class AddEventActivity : AppCompatActivity(), ApiResponseListner,
                 file2 = File(picturePath)
                 val myBitmap = BitmapFactory.decodeFile(file2!!.absolutePath)
                 binding.btnAadharFront.setImageBitmap(myBitmap)
-
-
+                imgList.add(file2!!)
                 Log.d("SinglePicturePath", picturePath)
                 //   iv_image.setImageURI(imageUri) Here you can assign the picked image uri to your imageview
             }
@@ -707,12 +766,13 @@ class AddEventActivity : AppCompatActivity(), ApiResponseListner,
 
         if (requestCode == CAMERA_PERMISSION_CODE1) {
             try {
-                Toast.makeText(this@AddEventActivity, "sdfsd", Toast.LENGTH_SHORT).show()
+                //  Toast.makeText(this@AddEventActivity, "sdfsd", Toast.LENGTH_SHORT).show()
 
                 val imageBitmap = data?.extras?.get("data") as Bitmap
                 binding.btnAadharFront.setImageBitmap(imageBitmap)
                 val tempUri = GeneralUtilities.getImageUri(applicationContext, imageBitmap)
                 file2 = File(GeneralUtilities.getRealPathFromURII(this, tempUri))
+                imgList.add(file2!!)
                 Log.e("Path", file2.toString())
 
                 //Toast.makeText(getContext(), ""+picturePath, Toast.LENGTH_SHORT).show();

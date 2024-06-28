@@ -84,28 +84,30 @@ class AddExpensesActivity : AppCompatActivity(), ApiResponseListner,
         val wayType = intent.getStringExtra("way")
         if (wayType.equals("EditExpense")) {
             binding.igToolbar.tvTitle.text = "Edit Expenses"
-            val expesneRsposne =intent.getSerializableExtra("expenseResponse") as GetExpensesBean.Data
+         //   val expesneRsposne =intent.getSerializableExtra("expenseResponse") as GetExpensesBean.Data
             binding.apply {
-                Glide.with(this@AddExpensesActivity).load(ApiContants.BaseUrl + expesneRsposne.file)
-                    .into(btnAadharFront)
-                id=expesneRsposne.id.toString()
-                customerID=expesneRsposne.ids.toString()
-                vendorID=expesneRsposne.vendorId.toString()
-                invoiceID=expesneRsposne.invoiceId.toString()
 
-                SelectBilled.setText(expesneRsposne.build)
-                editName.setText(expesneRsposne.name)
-                editNote.setText(expesneRsposne.note)
-                SelectCategory.setText(expesneRsposne.expenseCategory)
-                SelectSubCategory.setText(expesneRsposne.expenseSubcategory)
-                editExpensesDate.setText(expesneRsposne.expenseDate)
-                editExpenseAmount.setText(expesneRsposne.amount.toString())
-                    SelectCustomer.setText(expesneRsposne.customerName.toString())
+                Glide.with(this@AddExpensesActivity).load(ApiContants.BaseUrl + intent.getStringExtra("file"))
+                    .into(btnAadharFront)
+                id=intent.getStringExtra("id").toString()
+                customerID=intent.getStringExtra("ids").toString()
+                vendorID=intent.getStringExtra("vendorId").toString()
+                invoiceID=intent.getStringExtra("invoiceId").toString()
+
+                SelectBilled.setText(intent.getStringExtra("build").toString())
+                editName.setText(intent.getStringExtra("name").toString())
+                editNote.setText(intent.getStringExtra("note").toString())
+                SelectCategory.setText(intent.getStringExtra("expenseCategory"))
+                SelectSubCategory.setText(intent.getStringExtra("expenseSubcategory"))
+                editExpensesDate.setText(intent.getStringExtra("expenseDate"))
+                editExpenseAmount.setText(intent.getStringExtra("amount"))
+                    SelectCustomer.setText(intent.getStringExtra("customerName"))
              //    SelectSale.setText(expesneRsposne.sa.toString())
-                SelectExpenseType.setText(expesneRsposne.expenseType.toString())
-                SelectVendorLabour.setText(expesneRsposne.vendorName?.toString())
-                SelectPaymentMode.setText(expesneRsposne.paymentMode.toString())
-                editRefNumber.setText(expesneRsposne.refNo.toString())
+                SelectExpenseType.setText(intent.getStringExtra("expenseType"))
+                SelectVendorLabour.setText(intent.getStringExtra("vendorName"))
+
+                SelectPaymentMode.setText(intent.getStringExtra("paymentMode"))
+                editRefNumber.setText(intent.getStringExtra("refNo"))
 
             }
 
@@ -139,11 +141,8 @@ class AddExpensesActivity : AppCompatActivity(), ApiResponseListner,
 
     fun apiAddExpenses() {
         SalesApp.isAddAccessToken = true
-        val params = Utility.getParmMap()
-
         val builder = MultipartBody.Builder()
         builder.setType(MultipartBody.FORM)
-
         builder.addFormDataPart("expense_id", id)
         builder.addFormDataPart("customer_id", customerID)
         builder.addFormDataPart("amount", binding.editExpenseAmount.text.toString())

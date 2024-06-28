@@ -43,7 +43,7 @@ class EventFragment : Fragment(), ApiResponseListner {
         val root: View = binding.root
 
         val titleText = (activity as DashboardActivity?)
-        titleText?.setTitle("All Sales")
+        titleText?.setTitle("All Events")
 
         binding.fbAddArchitect.setOnClickListener {
             requireActivity().startActivity(Intent(requireActivity(), AddEventActivity::class.java).putExtra("way","Add Sales"))

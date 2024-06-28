@@ -1,6 +1,7 @@
 package com.example.house_of_cuisines.Adapter
 
 import android.app.Activity
+import android.content.Intent
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -8,6 +9,7 @@ import android.widget.ImageView
 import android.widget.TextView
 import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.RecyclerView
+import com.example.house_of_cuisines.Activity.AddEventActivity
 import com.example.house_of_cuisines.Model.DashboardBean
 import com.example.house_of_cuisines.R
 import com.example.house_of_cuisines.Utills.RvStatusClickListner
@@ -29,7 +31,7 @@ class HomeSaleAdapter(
 
     override fun onBindViewHolder(holder: MyViewHolder, position: Int) {
         holder.setIsRecyclable(false)
-holder.ivEdit.visibility=View.GONE
+
         /*     holder.tvAdd.background = RoundView(context.resources.getColor(R.color.orange), RoundView.getRadius(20f))
              holder.tvQtyAdd.background = RoundView(context.resources.getColor(R.color.orange), RoundView.getRadius(100f))
              holder.tvQtyMinus.background = RoundView(context.resources.getColor(R.color.orange), RoundView.getRadius(100f))
@@ -62,6 +64,15 @@ holder.ivEdit.visibility=View.GONE
         }
 
         holder.itemView.setOnClickListener {
+            context.startActivity(
+                Intent(
+                    context,
+                    AddEventActivity::class.java
+                )
+                   // .putExtra("saleResponse", list[position])
+                    .putExtra("id", list[position].id.toString())
+                    .putExtra("way","EditSale")
+            )
             //  rvClickListner.clickPos(list[position].indexId)
         }
     }
