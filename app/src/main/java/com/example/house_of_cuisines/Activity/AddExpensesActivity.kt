@@ -101,7 +101,7 @@ class AddExpensesActivity : AppCompatActivity(), ApiResponseListner,
                 SelectSubCategory.setText(intent.getStringExtra("expenseSubcategory"))
                 editExpensesDate.setText(intent.getStringExtra("expenseDate"))
                 editExpenseAmount.setText(intent.getStringExtra("amount"))
-                    SelectCustomer.setText(intent.getStringExtra("customerName"))
+                SelectCustomer.setText(intent.getStringExtra("customerName"))
              //    SelectSale.setText(expesneRsposne.sa.toString())
                 SelectExpenseType.setText(intent.getStringExtra("expenseType"))
                 SelectVendorLabour.setText(intent.getStringExtra("vendorName"))

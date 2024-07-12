@@ -62,7 +62,7 @@ class AddEventActivity : AppCompatActivity(), ApiResponseListner,
     val GSTType = listOf("Outer GST", "Inner GST")
     val ItemGSTType = listOf("Include", "Exclude")
     val TCS = listOf("0", "5", "15", "20")
-    val EventShift = listOf("Morning", "Evening")
+    val EventShift = listOf("Lunch", "Dinner")
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
